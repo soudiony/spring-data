@@ -9,6 +9,10 @@ public class Cargo {
     private Long id;
     private String descricao;
 
+    public Cargo(String descricao) {
+        this.descricao = descricao;
+    }
+
     public Long getId() {
         return id;
     }
