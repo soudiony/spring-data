@@ -40,8 +40,8 @@ public class CrudCargoService {
         Scanner scanner = new Scanner(System.in);
 
         String descricao = scanner.nextLine();
-
         Cargo cargo = new Cargo(descricao);
+
         cargoRepository.save(cargo);
         System.out.println("! SALVO AO BANCO DE DADOS !");
         return  true;

@@ -22,11 +22,23 @@ public class Funcionario {
     @ManyToOne
     private Unidade unidade;
 
-    public Funcionario() { }
+   public Funcionario(String novoNome, BigDecimal salario) {
+        this.nome = novoNome;
+        this.salario = salario;
 
-    public Funcionario(String nome) {
-        this.nome = nome;
+    }
 
+    public Funcionario(String nomeFunc, String cpf, BigDecimal salario, Unidade uni, Cargo cargo) {
+       this.nome = nomeFunc;
+       this.cpf = cpf;
+       this.salario = salario;
+       this.unidade = uni;
+       this.cargo = cargo;
+    }
+
+    public Funcionario(Long codFunc, String novoNome) {
+       this.id = codFunc;
+       this.nome = novoNome;
     }
 
     public Unidade getUnidade() {
@@ -55,5 +67,18 @@ public class Funcionario {
 
     public Cargo getCargo() {
         return cargo;
+    }
+
+    @Override
+    public String toString() {
+        return "Funcionario{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", salario=" + salario +
+                ", dataEntrada=" + dataEntrada +
+                ", cargo=" + cargo +
+                ", unidade=" + unidade +
+                '}';
     }
 }

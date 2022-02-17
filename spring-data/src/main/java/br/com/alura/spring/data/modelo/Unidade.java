@@ -20,6 +20,23 @@ public class Unidade {
 
     }
 
+    public Unidade(String nomeUnid) {
+        this.descricao = nomeUnid;
+    }
+
+    public Unidade(long l) {
+        this.id = l;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Unidade(Long posicao, String novoUni) {
+        this.id = posicao;
+        this.descricao = novoUni;
+    }
+
     public Long getId() {
         return id;
     }
@@ -30,5 +47,14 @@ public class Unidade {
 
     public String getEndereco() {
         return Endereco;
+    }
+
+    @Override
+    public String toString() {
+        return "Unidade{" +
+                "id=" + id +
+                ", descricao='" + descricao + '\'' +
+                ", Endereco='" + Endereco + '\'' +
+                '}';
     }
 }

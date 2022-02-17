@@ -17,8 +17,12 @@ public class Cargo {
         this.descricao = descricao;
     }
 
+    public Cargo(long l) {
+        this.id = l;
+    }
+
     public Cargo(String descricao) {
-        this.descricao = descricao;
+        this.descricao =descricao;
     }
 
     public Long getId() {
