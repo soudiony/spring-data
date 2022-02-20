@@ -9,12 +9,11 @@ public class Cargo {
     private Long id;
     private String descricao;
 
-    public Cargo() {
-    }
+    public Cargo() {    }
 
-    public Cargo(Long id, String descricao) {
+    public Cargo(Long id, String descricion) {
         this.id = id;
-        this.descricao = descricao;
+        this.descricao = descricion;
     }
 
     public Cargo(long l) {

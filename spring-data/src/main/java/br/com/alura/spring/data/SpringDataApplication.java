@@ -3,6 +3,7 @@ package br.com.alura.spring.data;
 import br.com.alura.spring.data.services.CrudCargoService;
 import br.com.alura.spring.data.services.CrudFuncionarioService;
 import br.com.alura.spring.data.services.CrudUnidadeService;
+import br.com.alura.spring.data.services.RelatorioService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,76 +14,53 @@ import java.util.Scanner;
 @SpringBootApplication
 public class SpringDataApplication implements CommandLineRunner {
 
-    private boolean temMaisCad = true;
+    private boolean system = true;
 
     private final CrudCargoService crudCargoService;  //classe responsavel por salvar
     private final CrudFuncionarioService crudFuncionarioService;
     private final CrudUnidadeService crudUnidadeService;
+    private final RelatorioService relatorioService;
 
 
-
-    public SpringDataApplication(CrudCargoService crudCargoService, CrudFuncionarioService crudFuncionarioService, CrudUnidadeService crudUnidadeService) {
+    public SpringDataApplication(CrudCargoService crudCargoService, CrudFuncionarioService crudFuncionarioService, CrudUnidadeService crudUnidadeService, RelatorioService relatorioService) {
         this.crudCargoService = crudCargoService;
         this.crudFuncionarioService = crudFuncionarioService;
         this.crudUnidadeService = crudUnidadeService;
+        this.relatorioService = relatorioService;
     }
 
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringDataApplication.class, args); }
+        SpringApplication.run(SpringDataApplication.class, args);
+    }
 
     @Override
     public void run(String... args) throws Exception {
-        Scanner scanner = new Scanner(System.in);
+      while (system) {
+            System.out.println("Qual função deseja executar?");
 
-        while (temMaisCad) {
-            System.out.println("------------ O QUE DESEJA REALIZAR: ------------");
-            System.out.println("1 - 'CADASTRAR CARGO: ");
-            System.out.println("2 - 'RELATORIO DE CARGOS: ");
-            System.out.println("3 - 'ATUALIZAR CARGO: ");
-            System.out.println("4 - 'DELETAR CARGO: ");
-            System.out.println();
-            System.out.println("5 - 'CADASTRAR FUNCIONARIO: ");
-            System.out.println("6 - 'RELATORIO FUNCIONARIO: ");
-            System.out.println("7 - 'ATUALIZAR FUNCIONARIO: ");
-            System.out.println("8 - 'DELETAR FUNCIONARIO: ");
-            System.out.println();
-            System.out.println("9 -  'CADASTRAR UNIDADE: ");
-            System.out.println("10 - 'RELATORIO DE UNIDADE: ");
-            System.out.println("11 - 'ATUALIZAR UNIDADE: ");
-            System.out.println("12 - 'DELETAR UNIDADE: ");
-            System.out.println();
-            System.out.println("13 - 'SAIR : ");
-            System.out.println("------------ --------------------- ------------");
+            System.out.println("1 - Funcionario");
+            System.out.println("2 - Cargo");
+            System.out.println("3 - Unidade");
 
+            System.out.println("4 - Sair");
 
-            int opcaoInt = scanner.nextInt();
-            //String opcao = scanner.next().toUpperCase();
+            int function = new Scanner(System.in).nextInt();
 
-            switch (opcaoInt) {
-                case 1: crudCargoService.salvar(); break;
-                case 2: crudCargoService.relatorio(); break;
-                case 3: crudCargoService.atualizar(); break;
-                case 4: crudCargoService.deletar(); break;
-
-                case 5: crudFuncionarioService.salvar(); break;
-                case 6: crudFuncionarioService.relatorio(); break;
-                case 7: crudFuncionarioService.atualizar(); break;
-                case 8: crudFuncionarioService.deletar(); break;
-
-                case 9:  crudUnidadeService.salvar(); break;
-                case 10: crudUnidadeService.relatorio(); break;
-                case 11: crudUnidadeService.atualizar(); break;
-                case 12: crudUnidadeService.deletar(); break;
-
+            switch (function) {
+                case 1:
+                    crudFuncionarioService.inicial();
+                    break;
+                case 2:
+                    crudCargoService.inicial(new Scanner(System.in));
+                    break;
+                case 3:
+                    crudUnidadeService.inicial();
+                    break;
                 default:
-                    temMaisCad = false;
-
+                    System.out.println("Finalizando");
+                    system = false;
             }
         }
-
-
-
     }
-
 }

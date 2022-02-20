@@ -22,11 +22,16 @@ public class Funcionario {
     @ManyToOne
     private Unidade unidade;
 
-   public Funcionario(String novoNome, BigDecimal salario) {
+    public Funcionario() {
+
+    }
+
+    public Funcionario(String novoNome, BigDecimal salario) {
         this.nome = novoNome;
         this.salario = salario;
 
     }
+
 
     public Funcionario(String nomeFunc, String cpf, BigDecimal salario, Unidade uni, Cargo cargo) {
        this.nome = nomeFunc;
@@ -71,14 +76,13 @@ public class Funcionario {
 
     @Override
     public String toString() {
-        return "Funcionario{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", cpf='" + cpf + '\'' +
-                ", salario=" + salario +
-                ", dataEntrada=" + dataEntrada +
-                ", cargo=" + cargo +
-                ", unidade=" + unidade +
-                '}';
+        return  "id:" + id +
+                ", nome:'" + nome + '\'' +
+                ", cpf:'" + cpf + '\'' +
+                ", salario:" + salario +
+                ", dataEntrada:" + dataEntrada +
+                ", cargo:" + cargo +
+                ", unidade:" + unidade +"\n";
+
     }
 }

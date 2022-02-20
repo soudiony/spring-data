@@ -9,12 +9,45 @@ import java.util.Scanner;
 @Service
 public class CrudUnidadeService {
 
-    Scanner entrada = new Scanner(System.in);
-
     private final UnidadeRepository unidadeRepository;
 
     public CrudUnidadeService(UnidadeRepository unidadeRepository) {
         this.unidadeRepository = unidadeRepository;
+    }
+
+    private Boolean system = true;
+
+    public void inicial() {
+        while (system) {
+            System.out.println("Qual acao de cargo deseja executar");
+
+            System.out.println("1 - Salvar");
+            System.out.println("2 - Atualizar");
+            System.out.println("3 - Visualizar");
+            System.out.println("4 - Deletar");
+
+            System.out.println("6 - Sair");
+
+            int action = new Scanner(System.in).nextInt();
+
+            switch (action) {
+                case 1:
+                    salvar();
+                    break;
+                case 2:
+                    atualizar();
+                    break;
+                case 3:
+                    relatorio();
+                    break;
+                case 4:
+                    deletar();
+                    break;
+                default:
+                    system = false;
+                    break;
+            }
+        }
     }
 
     public void salvar() {
@@ -56,7 +89,6 @@ public class CrudUnidadeService {
 
         unidadeRepository.deleteById(del);
         System.out.println("UNIDADE EXCLUIDA COM SUCESSO:");
-
 
 
     }
