@@ -25,7 +25,8 @@ public class CrudFuncionarioService {
     Scanner entrada = new Scanner(System.in);
 
     //como sera passado formato da data.
-    private final DateTimeFormatter formatarData = DateTimeFormatter.ofPattern("dd/mm/aaaa");
+     DateTimeFormatter formatarData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
 
     public CrudFuncionarioService(FuncionarioRepository funcionarioRepository, UnidadeRepository unidadeRepository, CargoRepository cargoRepository, CrudUnidadeService crudUnidadeService, CrudCargoService crudCargoService, RelatorioService relatorioService) {
         this.funcionarioRepository = funcionarioRepository;
@@ -44,9 +45,10 @@ public class CrudFuncionarioService {
             System.out.println("3 - Visualizar");
             System.out.println("4 - Deletar");
             System.out.println("5 - Buscar Funcionário");
-            System.out.println("6 - Buscar Salario");
+            System.out.println("6 - Buscar por Salario");
+            System.out.println("7 - Buscar por Data");
 
-            System.out.println("7 - Sair");
+            System.out.println("9 - Sair");
 
             int action = new Scanner(System.in).nextInt();
 
@@ -70,6 +72,10 @@ public class CrudFuncionarioService {
                 case 6:
                     buscarPorMaiorSalario();
                     break;
+                case 7:
+                    buscaPorData();
+                    break;
+
                 default:
                     system = false;
                     break;
@@ -83,6 +89,17 @@ public class CrudFuncionarioService {
 
     }
 
+    public void buscaPorData(){
+        System.out.println("QUAL A DATA DE CONTRATAÇÃO! DD/MM/AAAA");
+        String data = new Scanner(System.in).next();
+
+        LocalDate dataConvertida = LocalDate.parse(data, formatarData ); //com objeto formatarData passando Mascara
+        List<Funcionario> porData = funcionarioRepository.findByData(dataConvertida);
+
+        porData.forEach(elements -> System.out.println(elements));
+
+    }
+
     public void buscarPorMaiorSalario() {
         System.out.println("QUAL O NOME DESEJA BUSCAR!");
         String nome = new Scanner(System.in).nextLine();
@@ -90,16 +107,16 @@ public class CrudFuncionarioService {
         System.out.println("QUAL SALARIO DESEJA BUSCAR!");
         BigDecimal salario = new Scanner(System.in).nextBigDecimal();
 
-        System.out.println("QUAL A DATA DE CONTRATAÇÃO!");
-        String data = new Scanner(System.in).nextLine();
-        LocalDate dataConvertida = LocalDate.parse(data, formatarData ); //com objeto formatarData passando Mascara
+     // System.out.println("QUAL A DATA DE CONTRATAÇÃO!");
+    //    String data = new Scanner(System.in).nextLine();
+   //   LocalDate dataConvertida = LocalDate.parse(data, formatarData ); //com objeto formatarData passando Mascara
 
-        List<Funcionario> listaMaioresSalario = funcionarioRepository.findNomeSalarioMaiorDataContratacao(nome, salario, dataConvertida);
+        List<Funcionario> listaMaioresSalario = funcionarioRepository.findByNomeSalarioMaior(nome, salario);
+        listaMaioresSalario.forEach(salarioMaior -> System.out.println(salarioMaior));
         //busca qualquer funcionario  que tenha nome passado com data de contracao igual, com salario maior que o passado
 
 
     }
-
 
     public void salvar() {
         System.out.println("ENTRE COM OS DADOS DO FUNIONÁRIO!");
