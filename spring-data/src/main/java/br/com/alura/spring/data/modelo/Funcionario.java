@@ -77,12 +77,12 @@ public class Funcionario {
     @Override
     public String toString() {
         return  "id:" + id +
-                ", nome:'" + nome + '\'' +
-                ", cpf:'" + cpf + '\'' +
-                ", salario:" + salario +
-                ", dataEntrada:" + dataEntrada +
-                ", cargo:" + cargo +
-                ", unidade:" + unidade +"\n";
+                "  | nome:'" + nome + '\'' +
+                "  | cpf:'" + cpf + '\'' +
+                "  | salario:" + salario +
+                "  | dataEntrada:" + dataEntrada +
+                "  | cargo:" + cargo;
+
 
     }
 }
